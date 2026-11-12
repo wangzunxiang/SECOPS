@@ -14,11 +14,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Autumn-27/artex/agent"
-	"github.com/Autumn-27/artex/db"
-	"github.com/Autumn-27/artex/sidequestion"
 	"github.com/Autumn-27/norma/harness"
 	"github.com/Autumn-27/norma/llm"
+	"github.com/Autumn-27/secops/agent"
+	"github.com/Autumn-27/secops/db"
+	"github.com/Autumn-27/secops/sidequestion"
 )
 
 type sideHTTPProvider struct {

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# ARTEX 安装脚本：① 全部 Docker  ② 本地编译运行
+# SECOPS 安装脚本：① 全部 Docker  ② 本地编译运行
 set -euo pipefail
 cd "$(cd "$(dirname "$0")" && pwd)"
 
@@ -31,6 +31,12 @@ ensure_docker(){
 }
 
 # ── ① 全部 Docker ───────────────────────────────
+build_local_image(){
+  local img="$1" arch
+  [ -x ./build-image.sh ] || die "缺少 build-image.sh，无法本地构建镜像"
+  ./build-image.sh "$img"
+}
+
 install_docker(){
   ensure_docker
   umask 077
@@ -46,11 +52,15 @@ install_docker(){
   else
     info "沿用已存在的 .env"
   fi
-  info "拉取镜像并启动…"
-  docker compose pull
+  local img="${SECOPS_IMAGE:-secops}:${SECOPS_TAG:-latest}"
+  info "准备镜像 ${img}…"
+  if ! docker compose pull secops; then
+    warn "镜像仓库没有 ${img}，改为本地构建"
+    build_local_image "$img"
+  fi
   docker compose up -d
   ok "启动完成 → http://localhost:8787"
-  info "查看日志：docker compose logs -f artex"
+  info "查看日志：docker compose logs -f secops"
 }
 
 # ── ② 本地编译运行 ──────────────────────────────
@@ -62,16 +72,16 @@ install_local(){
     2)
       ensure_docker
       local pw; pw="$(ask 'Postgres 密码（回车随机）' "$(rand)")"
-      docker run -d --name artex-pg -p 5432:5432 \
-        -e POSTGRES_USER=artex -e POSTGRES_PASSWORD="$pw" -e POSTGRES_DB=artex \
-        -v artex-pg:/var/lib/postgresql/data postgres:16-alpine
-      DB_HOST=127.0.0.1 DB_PORT=5432 DB_USER=artex DB_PASS="$pw" DB_NAME=artex DB_SSL=disable ;;
+      docker run -d --name secops-pg -p 5432:5432 \
+        -e POSTGRES_USER=secops -e POSTGRES_PASSWORD="$pw" -e POSTGRES_DB=secops \
+        -v secops-pg:/var/lib/postgresql/data postgres:16-alpine
+      DB_HOST=127.0.0.1 DB_PORT=5432 DB_USER=secops DB_PASS="$pw" DB_NAME=secops DB_SSL=disable ;;
     *)
       DB_HOST="$(ask '数据库地址' 127.0.0.1)"
       DB_PORT="$(ask '端口' 5432)"
-      DB_USER="$(ask '账号' artex)"
+      DB_USER="$(ask '账号' secops)"
       DB_PASS="$(ask '密码' '')"
-      DB_NAME="$(ask '数据库名' artex)"
+      DB_NAME="$(ask '数据库名' secops)"
       DB_SSL="$(ask 'sslmode (disable/require)' disable)" ;;
   esac
 
@@ -100,19 +110,19 @@ JSON
     ( cd web && npm ci && npm run build:static )
     rm -rf server/webui/dist && cp -r web/out server/webui/dist
     info "编译内嵌单二进制…"
-    CGO_ENABLED=0 go build -tags embedui -trimpath -o artex ./cmd/artex
+    CGO_ENABLED=0 go build -tags embedui -trimpath -o secops ./cmd/secops
   else
     warn "未检测到 npm：将编译**不内嵌前端**的后端（前端需另跑 npm run dev）"
-    CGO_ENABLED=0 go build -o artex ./cmd/artex
+    CGO_ENABLED=0 go build -o secops ./cmd/secops
   fi
-  ok "编译完成 → ./artex"
+  ok "编译完成 → ./secops"
 
   info "启动…（Ctrl-C 退出）"
-  ./artex
+  ./secops
 }
 
 echo "=============================="
-echo "  ARTEX 安装"
+echo "  SECOPS 安装"
 echo "  1) 全部 Docker 安装"
 echo "  2) 本地运行（go 编译）"
 echo "=============================="

@@ -11,9 +11,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Autumn-27/artex/db"
-	"github.com/Autumn-27/artex/intercept"
 	actool "github.com/Autumn-27/norma/tool"
+	"github.com/Autumn-27/secops/db"
+	"github.com/Autumn-27/secops/intercept"
 )
 
 type findingCaseRequest struct {

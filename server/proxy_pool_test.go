@@ -16,8 +16,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Autumn-27/artex/agent"
-	"github.com/Autumn-27/artex/traffic"
+	"github.com/Autumn-27/secops/agent"
+	"github.com/Autumn-27/secops/traffic"
 )
 
 func TestParseProxyBatchValidationAndDedup(t *testing.T) {

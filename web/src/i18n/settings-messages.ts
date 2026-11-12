@@ -239,8 +239,8 @@ export const settingsMessages = {
     "The public-facing outbound IP returned by the probe service",
   ],
   "settings.latencyHint": [
-    "从 ARTEX 发出请求到拿到响应的完整往返耗时；经代理时包含代理那一跳",
-    "Full round-trip time from ARTEX to the response, including the proxy hop when used",
+    "从 SECOPS 发出请求到拿到响应的完整往返耗时；经代理时包含代理那一跳",
+    "Full round-trip time from SECOPS to the response, including the proxy hop when used",
   ],
   "settings.viaPrefix": ["· 经", " · via "],
   "settings.proxyPool": ["代理池", "Proxy pool"],
@@ -372,8 +372,8 @@ export const settingsMessages = {
     "Use the separate DeepSeek Search / Fetch API for search and page extraction. The current Agent’s model generates queries and organizes results.",
   ],
   "settings.deepSeekNetworkHelp": [
-    "搜索请求由 ARTEX 服务端发往 DeepSeek，可使用上方独立出口代理。API Key 只保存于服务端设置，不会回显。",
-    "ARTEX sends requests to DeepSeek from the server, using the separate outbound proxy above if configured. API keys are stored on the server and never shown.",
+    "搜索请求由 SECOPS 服务端发往 DeepSeek，可使用上方独立出口代理。API Key 只保存于服务端设置，不会回显。",
+    "SECOPS sends requests to DeepSeek from the server, using the separate outbound proxy above if configured. API keys are stored on the server and never shown.",
   ],
   "settings.keyConfiguredPlaceholder": ["已配置（留空则不变）", "Configured (leave blank to keep)"],
   "settings.keyConfigured": ["API Key 已配置", "API key configured"],
@@ -414,7 +414,7 @@ export const settingsMessages = {
   "settings.custom": ["自定义", "Custom "],
   "settings.pythonHelp": [
     "类型工具用它跑 Python。开机会自动检测（python3 优先）；此处可手填 venv / 特定版本的绝对路径，留空则运行时自动检测。",
-    " tools use this interpreter to run Python. ARTEX detects it at startup, preferring python3. Enter an absolute path for a virtual environment or specific version, or leave blank for automatic detection at runtime.",
+    " tools use this interpreter to run Python. SECOPS detects it at startup, preferring python3. Enter an absolute path for a virtual environment or specific version, or leave blank for automatic detection at runtime.",
   ],
   "settings.pythonPlaceholder": ["/usr/bin/python3（留空=自动检测）", "/usr/bin/python3 (blank = automatic detection)"],
   "settings.detectAgain": ["重新检测", "Detect again"],
@@ -458,19 +458,19 @@ export const settingsMessages = {
   ],
   "settings.basicAuthDisabled": ["HTTP Basic Auth 已关闭", "HTTP Basic Auth disabled"],
   "settings.basicAuthHelp": [
-    "开启后，访客需先通过浏览器原生账号密码验证，再进入 ARTEX 登录页。默认关闭，保存后立即生效。",
-    "When enabled, visitors must pass the browser’s native credential prompt before reaching the ARTEX sign-in page. Disabled by default. Saved changes take effect immediately.",
+    "开启后，访客需先通过浏览器原生账号密码验证，再进入 SECOPS 登录页。默认关闭，保存后立即生效。",
+    "When enabled, visitors must pass the browser’s native credential prompt before reaching the SECOPS sign-in page. Disabled by default. Saved changes take effect immediately.",
   ],
   "settings.enableBasicAuth": ["启用访问验证", "Enable access authentication"],
   "settings.basicAuthUsername": ["验证用户名", "Authentication username"],
-  "settings.basicAuthUsernamePlaceholder": ["独立于 ARTEX 登录账号", "Separate from your ARTEX sign-in account"],
+  "settings.basicAuthUsernamePlaceholder": ["独立于 SECOPS 登录账号", "Separate from your SECOPS sign-in account"],
   "settings.basicAuthUsernameHelp": ["不能包含冒号，最长 128 字节。", "Cannot contain a colon. Maximum 128 bytes."],
   "settings.basicAuthPassword": ["验证密码", "Authentication password"],
   "settings.keepPassword": ["已设置，留空保持原密码", "Already set; leave blank to keep"],
   "settings.basicAuthPasswordPlaceholder": ["至少 8 位，最多 72 字节", "At least 8 characters, at most 72 bytes"],
   "settings.basicAuthPasswordHelp": [
-    "与 ARTEX 登录密码独立。公网访问请使用 HTTPS。",
-    "Separate from your ARTEX password. Use HTTPS for public access.",
+    "与 SECOPS 登录密码独立。公网访问请使用 HTTPS。",
+    "Separate from your SECOPS password. Use HTTPS for public access.",
   ],
   "settings.basicAuthSessionHelp": [
     "保存不会中断当前浏览器访问。可用无痕窗口检查验证弹窗；浏览器可能缓存凭据。关闭后保留账号密码，便于再次开启。",
@@ -485,8 +485,8 @@ export const settingsMessages = {
   "settings.updateNetworkSaved": ["更新网络设置已保存", "Update network settings saved"],
   "settings.updatedVersion": ["已更新到 {{version}}，正在重新加载页面", "Updated to {{version}}. Reloading the page…"],
   "settings.restartTimeout": [
-    "等待服务重启超时。请检查后端日志，或确认 artex 是通过 start.sh / start.bat 启动的。",
-    "Timed out waiting for the service to restart. Check the backend logs and confirm ARTEX was started with start.sh / start.bat.",
+    "等待服务重启超时。请检查后端日志，或确认 secops 是通过 start.sh / start.bat 启动的。",
+    "Timed out waiting for the service to restart. Check the backend logs and confirm SECOPS was started with start.sh / start.bat.",
   ],
   "settings.confirmUpdateVersion": ["确定更新到 {{version}}？\n\n", "Update to {{version}}?\n\n"],
   "settings.updateInterruptWarning": [
@@ -495,7 +495,7 @@ export const settingsMessages = {
   ],
   "settings.dockerUpdateWarningStart": [
     "\n注意：容器内更新只替换程序本身，不会更新镜像里的 playwright / nmap 等工具链；",
-    "\nNote: Updating inside a container replaces only ARTEX, not tools such as playwright / nmap in the image. ",
+    "\nNote: Updating inside a container replaces only SECOPS, not tools such as playwright / nmap in the image. ",
   ],
   "settings.dockerUpdateWarningEnd": [
     "若新版本依赖新工具，请改用 docker compose pull。",
@@ -535,7 +535,7 @@ export const settingsMessages = {
   "settings.missingPackageStart": ["没有提供", " does not provide a package for "],
   "settings.missingPackageMiddle": ["的发布包（缺少", " (missing "],
   "settings.missingPackageEnd": ["），无法自动更新。", "). Automatic updates are unavailable."],
-  "settings.downloadStart": ["将下载", "ARTEX will download "],
+  "settings.downloadStart": ["将下载", "SECOPS will download "],
   "settings.downloadEnd": [
     "，校验 SHA256 并冒烟测试后才会替换，失败自动保留当前版本。",
     ", verify SHA256 and run a smoke test before replacing the program. The current version is kept if any step fails.",
@@ -543,7 +543,7 @@ export const settingsMessages = {
   "settings.upToDateDetail": ["当前已是最新版本。", "You are using the latest version."],
   "settings.dockerUpdateHelpStart": [
     "Docker 下的更新只替换程序本身，不更新镜像里的 playwright / nmap 等工具链，且",
-    "Updates in Docker replace only ARTEX, not tools such as playwright / nmap in the image. Running ",
+    "Updates in Docker replace only SECOPS, not tools such as playwright / nmap in the image. Running ",
   ],
   "settings.dockerUpdateHelpMiddle": [
     "重建容器后会退回镜像自带的版本。需要连镜像一起升级请执行",
@@ -559,12 +559,12 @@ export const settingsMessages = {
   "settings.rollback": ["回滚到上一版本", "Roll back to previous version"],
   "settings.restartScriptHelpStart": [
     "一键更新依赖守护脚本重启程序。请通过",
-    "One-click updates require a supervisor script to restart ARTEX. Start ARTEX using ",
+    "One-click updates require a supervisor script to restart SECOPS. Start SECOPS using ",
   ],
   "settings.restartScriptHelpMiddle": ["（Windows 为", " (Windows: "],
   "settings.restartScriptHelpEnd": [
-    "）启动 ARTEX；直接运行 artex 本体时，程序退出后不会被自动拉起。",
-    "). If you run the artex binary directly, it will not restart automatically after exiting.",
+    "）启动 SECOPS；直接运行 secops 本体时，程序退出后不会被自动拉起。",
+    "). If you run the secops binary directly, it will not restart automatically after exiting.",
   ],
   "settings.keywords.trafficCapture": ["流量 捕获 traffic proxy HTTP 代理", "traffic capture recording proxy HTTP"],
   "settings.keywords.trafficBinding": [

@@ -7,7 +7,7 @@ jwt.key
 web/.next
 web/out
 server/webui/dist
-/artex
+/secops
 data
 *.db
 transcripts

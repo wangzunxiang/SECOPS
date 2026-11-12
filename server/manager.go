@@ -16,13 +16,13 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/Autumn-27/artex/agent"
-	pgdb "github.com/Autumn-27/artex/db"
-	"github.com/Autumn-27/artex/enrich"
-	"github.com/Autumn-27/artex/guard"
-	"github.com/Autumn-27/artex/intercept"
-	"github.com/Autumn-27/artex/traffic"
 	actool "github.com/Autumn-27/norma/tool"
+	"github.com/Autumn-27/secops/agent"
+	pgdb "github.com/Autumn-27/secops/db"
+	"github.com/Autumn-27/secops/enrich"
+	"github.com/Autumn-27/secops/guard"
+	"github.com/Autumn-27/secops/intercept"
+	"github.com/Autumn-27/secops/traffic"
 )
 
 // Task is one engagement: a description + goal + its own exploration store,

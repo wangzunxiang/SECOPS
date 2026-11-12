@@ -305,7 +305,7 @@ func TestTaskFilesAuthAndHead(t *testing.T) {
 			path = ""
 		}
 		req := httptest.NewRequest("HEAD", "/api/tasks/313/files/"+action+"?path="+path, nil)
-		req.AddCookie(&http.Cookie{Name: "artex_token", Value: token})
+		req.AddCookie(&http.Cookie{Name: "secops_token", Value: token})
 		rec := httptest.NewRecorder()
 		handler.ServeHTTP(rec, req)
 		if rec.Code != 200 || rec.Body.Len() != 0 {
@@ -316,9 +316,9 @@ func TestTaskFilesAuthAndHead(t *testing.T) {
 
 // Opt-in, strictly read-only smoke check against an existing run directory.
 func TestTaskFilesRealDirectory(t *testing.T) {
-	base := os.Getenv("ARTEX_TASK_FILES_TEST_DIR")
+	base := os.Getenv("SECOPS_TASK_FILES_TEST_DIR")
 	if base == "" {
-		t.Skip("set ARTEX_TASK_FILES_TEST_DIR to read an existing task 313 directory")
+		t.Skip("set SECOPS_TASK_FILES_TEST_DIR to read an existing task 313 directory")
 	}
 	m := &Manager{dir: base, tasks: map[string]*Task{"313": {ID: "313"}}}
 	s := &Server{m: m}

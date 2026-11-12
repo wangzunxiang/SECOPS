@@ -69,7 +69,7 @@ export function ChangePasswordDialog({
           <DialogHeader>
             <DialogTitle>{t("account.changePassword")}</DialogTitle>
             <DialogDescription>
-              {t("account.usernameFixed")} <b>ARTEX</b>
+              {t("account.usernameFixed")} <b>SECOPS</b>
               {t("account.tokenNotice")}
             </DialogDescription>
           </DialogHeader>

@@ -12,9 +12,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Autumn-27/artex/db"
-	"github.com/Autumn-27/artex/evidence"
-	"github.com/Autumn-27/artex/report"
+	"github.com/Autumn-27/secops/db"
+	"github.com/Autumn-27/secops/evidence"
+	"github.com/Autumn-27/secops/report"
 )
 
 type exportedScreenshot struct {

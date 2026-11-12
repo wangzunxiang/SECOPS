@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/Autumn-27/artex/db"
 	actool "github.com/Autumn-27/norma/tool"
+	"github.com/Autumn-27/secops/db"
 )
 
 // Missing host/setting means off. Rechecked on every write for running sessions.

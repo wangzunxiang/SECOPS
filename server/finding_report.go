@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Autumn-27/artex/db"
+	"github.com/Autumn-27/secops/db"
 )
 
 // generateFindingReport requeues the existing reporter workflow for a finding.
