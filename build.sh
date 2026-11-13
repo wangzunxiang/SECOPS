@@ -233,9 +233,9 @@ write_checksums() {
   [ "$SECOPS_PACKAGE" = "1" ] || return 0
   checksum_file="$SECOPS_PACKAGE_DIR/SHA256SUMS"
   if command -v sha256sum >/dev/null 2>&1; then
-    (cd "$SECOPS_PACKAGE_DIR" && for archive in *.zip; do sha256sum "$archive"; done > "$(basename "$checksum_file")")
+    (cd "$SECOPS_PACKAGE_DIR" && for archive in *-"$SECOPS_BUILD_VERSION"-*.zip; do [ -e "$archive" ] && sha256sum "$archive"; done > "$(basename "$checksum_file")")
   elif command -v shasum >/dev/null 2>&1; then
-    (cd "$SECOPS_PACKAGE_DIR" && for archive in *.zip; do shasum -a 256 "$archive"; done > "$(basename "$checksum_file")")
+    (cd "$SECOPS_PACKAGE_DIR" && for archive in *-"$SECOPS_BUILD_VERSION"-*.zip; do [ -e "$archive" ] && shasum -a 256 "$archive"; done > "$(basename "$checksum_file")")
   else
     warn "未检测到 sha256sum 或 shasum，跳过 SHA256SUMS"
     return 0
