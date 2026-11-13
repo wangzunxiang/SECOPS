@@ -138,7 +138,7 @@ docker compose up -d          # 启动 secops + postgres
 
 ### 方式三：下载预编译二进制（Releases）
 
-到本仓库的 [Releases](https://github.com/RuoJi6/SECOPS/releases) 下载对应平台的 zip，解压后得到 `secops` + `start.sh`（Windows 为 `start.bat`）+ `skills/` + `config.example.json`。Linux ARM64（包括 ARM64 Kali）选择 `linux-arm64`，x86_64 选择 `linux-amd64`：
+到本仓库的 [Releases](https://github.com/wangzunxiang/SECOPS/releases) 下载对应平台的 zip，解压后得到 `secops` + `start.sh`（Windows 为 `start.bat`）+ `skills/` + `config.example.json`。Linux ARM64（包括 ARM64 Kali）选择 `linux-arm64`，x86_64 选择 `linux-amd64`：
 
 ```bash
 cp config.example.json config.json   # 填好 database 连接
@@ -186,7 +186,7 @@ SECOPS_TARGETS=linux/amd64,windows/amd64 ./build.sh --release
 
 在 **系统配置** 页（侧边栏「系统配置」→ `/system/settings`）的**版本与更新**卡片里，可以直接检查并安装新版本，无需登录服务器。
 
-程序固定从 `selfupdate.Repo` 指定的发布源（默认 `RuoJi6/SECOPS`）的最新正式 GitHub Release 检查更新，跳过草稿和预发布版本。该仓库发布正式版本之前，页面会提示发布源不可访问——此时请用 `./update.sh` 更新；发布首个三段式版本后即可在页面升级。仅推送 main 或 Git 标签但未发布 Release，不会产生可在线安装的新版本。
+程序固定从 `selfupdate.Repo` 指定的发布源（默认 `wangzunxiang/SECOPS`）的最新正式 GitHub Release 检查更新，跳过草稿和预发布版本。该仓库发布正式版本之前，页面会提示发布源不可访问——此时请用 `./update.sh` 更新；发布首个三段式版本后即可在页面升级。仅推送 main 或 Git 标签但未发布 Release，不会产生可在线安装的新版本。
 
 点「更新」后：下载当前平台的发布包 → 比对 Release 的 `SHA256SUMS` → 用 `-h` 冒烟测试新二进制 → 暂存为 `secops.new` → 程序退出，由 `start.sh` / `start.bat` 重新拉起并完成换装。页面会自动等到新版本上线后刷新。
 
@@ -274,7 +274,7 @@ docker image prune -f          # 清理旧镜像（可选）
 
 ### 方式四：预编译二进制（Releases）
 
-到 [Releases](https://github.com/RuoJi6/SECOPS/releases) 下载新版本 zip，停掉旧进程后覆盖 `secops` 与 `skills/`（保留你的 `config.json` 与 `data/`），重启即可：
+到 [Releases](https://github.com/wangzunxiang/SECOPS/releases) 下载新版本 zip，停掉旧进程后覆盖 `secops` 与 `skills/`（保留你的 `config.json` 与 `data/`），重启即可：
 
 ```bash
 cp -r <解压目录>/skills ./ && cp <解压目录>/secops ./

@@ -41,8 +41,8 @@
 
 ### 部署与发布维护
 
-- 迁移至独立的 `RuoJi6/SECOPS` 仓库，保留原提交历史与分支。
-- 页面在线更新源为 `RuoJi6/SECOPS`；GitHub Actions 构建五个平台程序包和 SHA256 校验文件。
+- 迁移至独立的 `wangzunxiang/SECOPS` 仓库，保留原提交历史与分支。
+- 页面在线更新源为 `wangzunxiang/SECOPS`；GitHub Actions 构建五个平台程序包和 SHA256 校验文件。
 - 在原生 AMD64、ARM64 runner 上构建 Docker Hub 镜像，并验证程序启动、数据库连接和内嵌前端。
 - 两种架构验证通过后，发布 `v0.3.15`、`latest` 镜像及对应程序包。
 - Compose 和部署说明使用本仓库的镜像，补充已有部署保留数据的迁移方式。
